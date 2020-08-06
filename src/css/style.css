@@ -24,7 +24,35 @@
     border-left: solid 1px black;
 }
 
+.board-space {
+    font-size: 60px;
+    line-height: 150px;
+}
 
+.board-space:hover {
+    background: linear-gradient(178deg, #662464, #ee04e7, #1404ee);
+    background-size: 600% 600%;
+    color: white;
 
+    -webkit-animation: colorScroll 6s ease infinite;
+    -moz-animation: colorScroll 6s ease infinite;
+    animation: colorScroll 6s ease infinite;
+}
+
+@-webkit-keyframes colorScroll {
+    0%{background-position:48% 0%}
+    50%{background-position:53% 100%}
+    100%{background-position:48% 0%}
+}
+@-moz-keyframes colorScroll {
+    0%{background-position:48% 0%}
+    50%{background-position:53% 100%}
+    100%{background-position:48% 0%}
+}
+@keyframes colorScroll {
+    0%{background-position:48% 0%}
+    50%{background-position:53% 100%}
+    100%{background-position:48% 0%}
+}
 
 

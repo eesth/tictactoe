@@ -1,62 +1,53 @@
 var grid = [
-    ['','',''],
-    ['','',''],
-    ['','',''],
+    ['', '', ''],
+    ['', '', ''],
+    ['', '', ''],
 ];
 
-function checkWinner(){
-    const conditionX = 'XXX'
-    const conditionO = 'OOO'
+function checkEqualStr(str) {
+    if (str.length < 3) return '';
+    //check str for all characters the same
+    return /^(.)\1+$/.test(str) ? str[0] : '';
+}
+
+function checkEqualArray(arr) {
+    return arr.filter((entry) => {
+        return checkEqualStr(entry.join(''));
+    })[0]
+}
+
+function checkWinner() {
     //diaonal
-    let dOne= grid[0][0] + grid[1][1] + grid[2][2]
-    let dTwo= grid[0][2] + grid[1][1] + grid[2][0]
+    let dOne = grid[0][0] + grid[1][1] + grid[2][2]
+    let dTwo = grid[0][2] + grid[1][1] + grid[2][0]
 
-    if(dOne === conditionO || dTwo === conditionO){
-        console.log('winner O d')
-    }
-    
-    if(dOne === conditionX || dTwo === conditionX){
-        console.log('winner X d')
-    }
+    let newBoard = [
+        Array(3),
+        Array(3),
+        Array(3)
+    ];
 
-    for(var i = 0; i < grid.length; i++){
-        //Horizontal
-        if (grid[i].join('') === conditionO){
-            console.log('winner O')
-        }
-        if (grid[i].join('') === conditionX){
-            console.log('winner X')
-        }
-       
-        let newBoard = [
-            Array(3),
-            Array(3),
-            Array(3)
-        ];
-
-        for(var k = 0; k < grid[i].length; k++){
+    for (var i = 0; i < grid.length; i++) {
+        for (var k = 0; k < grid[i].length; k++) {
             newBoard[i][k] = grid[k][i]
         }
-
-        //Horizontal
-        if (newBoard[i].join('') === conditionO){
-            console.log('winner O')
-        }
-        if (newBoard[i].join('') === conditionX){
-            console.log('winner X')
-        }
-
     }
+
+    return [
+        checkEqualArray(newBoard),
+        checkEqualStr(dOne),
+        checkEqualStr(dTwo),
+        checkEqualArray(grid)
+    ].flat().find(e => e)
+
 }
 
 var clickCounter = 0;
 
 
-window.onload = function() {
+window.onload = function () {
     document.getElementById("identifyPlayer").innerHTML = playerFormatter('X');
-  };
-
-
+};
 
 function onClick(event) {
     let player = determinePlayer();
@@ -65,39 +56,41 @@ function onClick(event) {
     document.getElementById("identifyPlayer").innerHTML = playerFormatter(determineNextPlayer());
 }
 
-function writeBoard(player,eventId){
-    if(grid[eventId[0]][eventId[1]]){
+function writeBoard(player, eventId) {
+    if (grid[eventId[0]][eventId[1]]) {
         return;
     }
     clickCounter = clickCounter + 1
-    
-
     grid[eventId[0]][eventId[1]] = player
     document.getElementById(eventId).innerHTML = player;
-    checkWinner();
+    let winner = checkWinner();
+    if (winner) {
+        alert('Winner is ' + winner);
+        location.reload();
+    }
 }
 
-function playerFormatter(player){
+function playerFormatter(player) {
     return "It's " + player + " turn";
 }
 
-function determineNextPlayer(){
-    if(clickCounter % 2 === 0){
+function determineNextPlayer() {
+    if (clickCounter % 2 === 0) {
         return 'X'
     }
 
     return 'O';
 }
 
-function determinePlayer(){
-    if(clickCounter % 2 !== 0){
+function determinePlayer() {
+    if (clickCounter % 2 !== 0) {
         return 'O'
     }
-
+    
     return 'X';
 }
 
-function getId(eventObject){
+function getId(eventObject) {
     return eventObject['srcElement']['id'];
 }
 
