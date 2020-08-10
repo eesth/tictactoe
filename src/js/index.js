@@ -26,10 +26,12 @@ function checkWinner() {
         Array(3),
         Array(3)
     ];
-
+    // i = i + 1 ===> i++
     for (var i = 0; i < grid.length; i++) {
+        console.log(i)
         for (var k = 0; k < grid[i].length; k++) {
-            newBoard[i][k] = grid[k][i]
+            console.log(k)
+            newBoard[i][k] = grid[k][i];
         }
     }
 
@@ -86,7 +88,7 @@ function determinePlayer() {
     if (clickCounter % 2 !== 0) {
         return 'O'
     }
-    
+
     return 'X';
 }
 

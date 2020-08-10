@@ -39,6 +39,46 @@
     animation: colorScroll 6s ease infinite;
 }
 
+.title{
+    font-family: 'Rubik Mono One', sans-serif;
+    font-size: 65px;
+    color: black;
+    text-align: center;
+}
+
+.bliking{
+    animation-duration: 1s;
+    animation-name: blink;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    font-family: monospace;
+    color: red;
+    text-align: center;
+    font-weight: bolder;
+}
+
+#identifyPlayer{
+    animation-duration: 1s;
+    animation-name: blink;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    font-family: monospace;
+    color: red;
+    text-align: center;
+    font-weight: bolder;
+
+}
+
+@keyframes blink {
+    0% {color:black;
+        opacity: 1.5}
+    
+    50% {opacity: 1;
+        color:red};
+    
+    100% {opacity: 0};
+}
+
 @-webkit-keyframes colorScroll {
     0%{background-position:48% 0%}
     50%{background-position:53% 100%}
