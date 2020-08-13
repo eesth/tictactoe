@@ -1,3 +1,16 @@
+
+body {
+    
+    background: linear-gradient(178deg, #3ad3b2, #284fce, #27df74);
+    background-size: 600% 600%;
+    color: white;
+
+    -webkit-animation: colorScroll 6s ease infinite;
+    -moz-animation: colorScroll 6s ease infinite;
+    animation: colorScroll 6s ease infinite;
+
+}
+
 .row {
     display: flex;
     justify-content: center;
